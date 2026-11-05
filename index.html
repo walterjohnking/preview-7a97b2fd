@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Jessica Nails &amp; Beauty Boutique · Carlton North</title>
+<meta name="description" content="Nails and beauty on Nicholson Street, Carlton North. Gel, dip, acrylic and nail art.">
+<meta name="theme-color" content="#F7F1EA">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero.webp">
+<style>
+:root{--ivory:#F7F1EA;--blush:#E8B4B8;--esp:#2A211C;--stone:#8A8F84;--line:#E5DCD3;--white:#fff;--serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--ivory);color:var(--esp);font:400 16px/1.6 var(--sans);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 22px}
+h2{font:300 34px/1.1 var(--serif);letter-spacing:-.01em;margin-bottom:10px}
+.lead{color:#5d534c;font-size:15px}
+section{padding:64px 0}
+/* bar */
+.bar{position:sticky;top:0;z-index:20;background:rgba(247,241,234,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.mark{text-decoration:none;line-height:1}
+.mark b{display:block;font:400 21px/1 var(--serif);letter-spacing:.04em}
+.mark small{display:block;font:500 9.5px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--stone);margin-top:5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 24px;border-radius:999px;font:500 15px/1 var(--sans);text-decoration:none;border:0;cursor:pointer;transition:transform .2s ease,background .2s ease}
+.btn:active{transform:scale(.97)}
+.btn-dark{background:var(--esp);color:var(--ivory)}
+.btn-dark:hover{background:#3b2f28}
+.btn-sm{min-height:40px;padding:0 20px;font-size:14px}
+.btn-line{background:transparent;border:1px solid var(--esp);color:var(--esp)}
+/* hero */
+.hero{padding:22px 0 56px}
+.hero-img{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:#eadfd6}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--white);border:1px solid var(--line);font:500 13px/1 var(--sans);white-space:nowrap}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--stone);flex:none}
+.chip.open i{background:#6E9B6A;box-shadow:0 0 0 4px rgba(110,155,106,.18)}
+.hero-img .chip{position:absolute;left:14px;bottom:14px}
+.hero h1{font:300 42px/1.04 var(--serif);letter-spacing:-.02em;margin:28px 0 12px}
+.hero .sub{font:500 12px/1.4 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin-bottom:12px}
+.hero .body{font-size:17px;color:#4a403a;margin-bottom:26px}
+.ctas{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.link{font-weight:500;font-size:15px;text-decoration:none;border-bottom:1px solid var(--blush);padding-bottom:2px}
+/* services */
+.svc{list-style:none;margin-top:28px;border-top:1px solid var(--line)}
+.svc li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+.svc h3{font:400 21px/1.2 var(--serif)}
+.svc p{font-size:14.5px;color:#5d534c;margin-top:4px}
+.svc a{flex:none;font:500 12.5px/1.3 var(--sans);color:var(--esp);text-decoration:none;border-bottom:1px solid var(--blush);text-align:right;max-width:96px}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:28px;border-radius:14px;overflow:hidden}
+.gal button{border:0;padding:0;background:#eadfd6;aspect-ratio:1;cursor:zoom-in;overflow:hidden}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gal button:hover img{transform:scale(1.04)}
+.more{display:inline-block;margin-top:18px}
+.lb{position:fixed;inset:0;z-index:60;background:rgba(42,33,28,.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.lb.on{opacity:1;pointer-events:auto}
+.lb img{max-height:86vh;border-radius:12px}
+.lb button{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:var(--ivory);font-size:22px;cursor:pointer}
+/* reviews */
+.rev{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stars{display:flex;align-items:center;gap:10px;margin:6px 0 26px;font:500 15px/1 var(--sans)}
+.stars span{color:#C98E93;letter-spacing:2px;font-size:18px}
+blockquote{padding:22px 0;border-top:1px solid var(--line)}
+blockquote p{font:300 21px/1.35 var(--serif)}
+blockquote cite{display:block;margin-top:10px;font:500 11.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--stone);font-style:normal}
+/* visit */
+.addr{font:400 20px/1.3 var(--serif);margin:4px 0 16px}
+.visit h3{font:500 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin:28px 0 8px}
+.hours{width:100%;border-collapse:collapse;font-size:15px}
+.hours td{padding:11px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.hours tr.today td{font-weight:600}
+.map{margin-top:28px;border-radius:18px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:#eadfd6}
+.map iframe{width:100%;height:100%;border:0;filter:saturate(.7) sepia(.08)}
+.vbtns{display:flex;gap:12px;margin-top:16px}
+.vbtns .btn{flex:1}
+/* footer */
+footer{padding:48px 0 130px;font-size:14px;color:#5d534c;border-top:1px solid var(--line)}
+footer strong{display:block;font:400 19px/1.3 var(--serif);color:var(--esp);margin-bottom:8px}
+footer a{text-decoration:none;border-bottom:1px solid var(--line)}
+footer p{margin-top:4px}
+/* bottom book bar */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(247,241,234,1) 55%,rgba(247,241,234,0));transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .35s ease}
+.dock .btn{width:100%;max-width:528px;margin:0 auto;display:flex;min-height:52px;font-size:16px;box-shadow:0 8px 24px rgba(42,33,28,.18)}
+.dock.hide{transform:translateY(110%);opacity:0;pointer-events:none}
+/* sheet */
+.scrim{position:fixed;inset:0;z-index:50;background:rgba(42,33,28,.45);opacity:0;pointer-events:none;transition:opacity .3s ease}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:51;background:var(--ivory);border-radius:24px 24px 0 0;padding:12px 22px calc(26px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .38s cubic-bezier(.2,.8,.2,1);max-width:560px;margin:0 auto}
+.open-sheet .scrim{opacity:1;pointer-events:auto}
+.open-sheet .sheet{transform:none}
+.grab{width:40px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 20px}
+.sheet h2{font-size:28px;margin-bottom:6px}
+.sheet .lead{margin-bottom:22px}
+.opt{display:flex;align-items:center;gap:14px;width:100%;padding:16px 18px;border-radius:16px;background:var(--white);border:1px solid var(--line);text-decoration:none;font:500 16px/1.2 var(--sans);margin-bottom:10px;transition:border-color .2s ease}
+.opt:hover{border-color:var(--blush)}
+.opt svg{width:22px;height:22px;flex:none}
+.opt .ic{width:42px;height:42px;border-radius:50%;background:var(--blush);display:grid;place-items:center;flex:none}
+.fine{font-size:13px;color:var(--stone);margin-top:12px;text-align:center}
+.x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:transparent;font-size:24px;cursor:pointer;color:var(--esp)}
+@media(min-width:900px){
+ .hero .wrap{max-width:1040px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+ .hero h1{font-size:56px;margin-top:0}
+ .hero{padding:40px 0 72px}
+ .bar .wrap{max-width:1040px}
+ .dock{display:none}
+ footer{padding-bottom:60px}
+}
+@media(max-width:899px){.bar .btn{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+ <a class="mark" href="#top" aria-label="Jessica Nails &amp; Beauty Boutique"><b>Jessica Nails</b><small>Beauty Boutique</small></a>
+ <button class="btn btn-dark btn-sm" data-book>Book</button>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+ <div class="hero-img"><img src="img/hero.webp" alt="Soft pink manicure on a woman's hands" width="1000" height="1500"><span class="chip" data-chip><i></i><span>Hours</span></span></div>
+ <div>
+  <h1>Nails &amp; beauty on Nicholson Street</h1>
+  <p class="sub">Carlton North · Rated 4.9 on Google</p>
+  <p class="body">Gel, dip, acrylic and nail art. Book by message or phone.</p>
+  <div class="ctas"><button class="btn btn-dark" id="hero-book" data-book>Book</button><a class="link" href="#services">See services</a></div>
+ </div>
+</div></section>
+
+<section id="services"><div class="wrap">
+ <h2>Services</h2>
+ <p class="lead">Popular treatments. Message us for pricing and to book.</p>
+ <ul class="svc">
+  <li><div><h3>Manicure</h3><p>Shape, cuticle care and polish.</p></div><a href="https://ig.me/m/jessica_nails_boutique" target="_blank" rel="noopener">Message for pricing</a></li>
+  <li><div><h3>Pedicure</h3><p>A thorough foot treat that lasts.</p></div><a href="https://ig.me/m/jessica_nails_boutique" target="_blank" rel="noopener">Message for pricing</a></li>
+  <li><div><h3>Gel &amp; shellac</h3><p>Colour that stays put.</p></div><a href="https://ig.me/m/jessica_nails_boutique" target="_blank" rel="noopener">Message for pricing</a></li>
+  <li><div><h3>SNS dip</h3><p>Strong, natural-looking colour.</p></div><a href="https://ig.me/m/jessica_nails_boutique" target="_blank" rel="noopener">Message for pricing</a></li>
+  <li><div><h3>Acrylic &amp; extensions</h3><p>Length and shape, finished smooth.</p></div><a href="https://ig.me/m/jessica_nails_boutique" target="_blank" rel="noopener">Message for pricing</a></li>
+  <li><div><h3>Nail art</h3><p>From simple detail to full designs.</p></div><a href="https://ig.me/m/jessica_nails_boutique" target="_blank" rel="noopener">Message for pricing</a></li>
+  <li><div><h3>Waxing</h3><p>Quick and careful.</p></div><a href="https://ig.me/m/jessica_nails_boutique" target="_blank" rel="noopener">Message for pricing</a></li>
+ </ul>
+</div></section>
+
+<section id="work" style="padding-top:8px"><div class="wrap">
+ <h2>Gallery</h2>
+ <p class="lead">Soft colour, clean shape.</p>
+ <div class="gal">
+  <button data-lb="img/g1.webp"><img src="img/g1.webp" alt="White polish being applied" loading="lazy" width="800" height="800"></button>
+  <button data-lb="img/g2.webp"><img src="img/g2.webp" alt="Polish being painted on nails" loading="lazy" width="800" height="800"></button>
+  <button data-lb="img/g3.webp"><img src="img/g3.webp" alt="Red and white nail art" loading="lazy" width="800" height="800"></button>
+  <button data-lb="img/g4.webp"><img src="img/g4.webp" alt="Pink nail art with a gold ring" loading="lazy" width="800" height="800"></button>
+  <button data-lb="img/g5.webp"><img src="img/g5.webp" alt="Navy and white manicure" loading="lazy" width="800" height="800"></button>
+  <button data-lb="img/g6.webp"><img src="img/g6.webp" alt="Bright lime gel nails" loading="lazy" width="800" height="800"></button>
+ </div>
+ <a class="link more" href="https://www.instagram.com/jessica_nails_boutique/" target="_blank" rel="noopener">See more on Instagram</a>
+</div></section>
+
+<section class="rev"><div class="wrap">
+ <h2>What clients say</h2>
+ <div class="stars"><span aria-hidden="true">★★★★★</span>Rated 4.9 on Google</div>
+ <blockquote><p>“Best nails I’ve ever had! They did my nails with such care and took the time to make them perfect!!”</p><cite>Google review</cite></blockquote>
+ <blockquote><p>“Quality pedicure that lasted through beach swimming, running and lots of shoe changes.”</p><cite>Google review</cite></blockquote>
+ <blockquote><p>“Thin acrylic filed very smooth and shaped almond perfectly! Plenty of colours and Designs available too.”</p><cite>Google review</cite></blockquote>
+ <a class="link" href="https://www.google.com/maps/search/?api=1&query=Jessica+Nails+%26+Beauty+Boutique+705+Nicholson+St+Carlton+North" target="_blank" rel="noopener">Read more on Google</a>
+</div></section>
+
+<section class="visit" id="visit"><div class="wrap">
+ <h2>Visit us</h2>
+ <p class="addr">705 Nicholson St, Carlton North</p>
+ <span class="chip" data-chip><i></i><span>Hours</span></span>
+ <h3>Hours</h3>
+ <table class="hours"><tbody>
+  <tr data-d="1"><td>Monday</td><td>10am–6pm</td></tr>
+  <tr data-d="2"><td>Tuesday</td><td>11am–9pm</td></tr>
+  <tr data-d="3"><td>Wednesday</td><td>11am–9pm</td></tr>
+  <tr data-d="4"><td>Thursday</td><td>10am–7pm</td></tr>
+  <tr data-d="5"><td>Friday</td><td>10am–7pm</td></tr>
+  <tr data-d="6"><td>Saturday</td><td>10am–9pm</td></tr>
+  <tr data-d="0"><td>Sunday</td><td>10am–5pm</td></tr>
+ </tbody></table>
+ <div class="map"><iframe title="Map of 705 Nicholson St, Carlton North" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=705%20Nicholson%20St%2C%20Carlton%20North%20VIC%203054&z=16&output=embed"></iframe></div>
+ <div class="vbtns">
+  <a class="btn btn-dark" href="https://www.google.com/maps/dir/?api=1&destination=705+Nicholson+St+Carlton+North+VIC+3054" target="_blank" rel="noopener">Get directions</a>
+  <a class="btn btn-line" href="tel:+61405636161">Call</a>
+ </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+ <strong>Jessica Nails &amp; Beauty Boutique</strong>
+ <p>705 Nicholson St, Carlton North</p>
+ <p><a href="tel:+61405636161">0405 636 161</a></p>
+ <p><a href="https://www.instagram.com/jessica_nails_boutique/" target="_blank" rel="noopener">Instagram</a> · <a href="mailto:jessica.boutique705@gmail.com">jessica.boutique705@gmail.com</a></p>
+</div></footer>
+
+<div class="dock hide" id="dock"><button class="btn btn-dark" data-book>Book</button></div>
+
+<div class="scrim" data-close></div>
+<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="bk-t" aria-hidden="true" id="sheet">
+ <button class="x" data-close aria-label="Close">×</button>
+ <div class="grab"></div>
+ <h2 id="bk-t">Book an appointment</h2>
+ <p class="lead">Message us on Instagram or give us a call.</p>
+ <a class="opt" id="opt-ig" href="https://ig.me/m/jessica_nails_boutique" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2A211C" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="#2A211C"/></svg></span>Message on Instagram</a>
+ <a class="opt" id="opt-call" href="tel:+61405636161"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2A211C" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>Call 0405 636 161</a>
+ <p class="fine">We’re a small salon, so booking ahead is best.</p>
+</div>
+
+<div class="lb" id="lb"><button aria-label="Close">×</button><img alt=""></div>
+
+<script>
+(function(){
+ // Hours in minutes, by JS day (0 = Sunday)
+ var H={0:[600,1020],1:[600,1080],2:[660,1260],3:[660,1260],4:[600,1140],5:[600,1140],6:[600,1260]};
+ var N=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+ function fmt(m){var h=Math.floor(m/60),mm=m%60,ap=h>=12?'pm':'am';h=h%12||12;return h+(mm?':'+(mm<10?'0':'')+mm:'')+ap}
+ function mel(){
+  var q=new URLSearchParams(location.search).get('t'); // ?t=2026-11-05T14:00 for testing
+  var d=q?new Date(q+'Z'):new Date();
+  var o=q?{timeZone:'UTC'}:{timeZone:'Australia/Melbourne'};
+  var p=new Intl.DateTimeFormat('en-AU',Object.assign({weekday:'short',hour:'numeric',minute:'numeric',hourCycle:'h23'},o)).formatToParts(d),r={};
+  p.forEach(function(x){r[x.type]=x.value});
+  return {day:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(r.weekday),min:(+r.hour%24)*60+(+r.minute)};
+ }
+ window.hoursState=function(){
+  var n=mel(),t=H[n.day];
+  if(n.min>=t[0]&&n.min<t[1])return {open:true,text:'Open now · closes '+fmt(t[1]),day:n.day};
+  if(n.min<t[0])return {open:false,text:'Closed · opens today '+fmt(t[0]),day:n.day};
+  var nd=(n.day+1)%7;return {open:false,text:'Closed · opens tomorrow '+fmt(H[nd][0]),day:n.day};
+ };
+ function paint(){var s=hoursState();document.querySelectorAll('[data-chip]').forEach(function(c){c.classList.toggle('open',s.open);c.lastElementChild.textContent=s.text});
+  document.querySelectorAll('.hours tr').forEach(function(r){r.classList.toggle('today',+r.dataset.d===s.day)})}
+ paint();setInterval(paint,60000);
+ // sheet
+ var b=document.body,sh=document.getElementById('sheet'),last;
+ function open(e){last=e&&e.currentTarget;b.classList.add('open-sheet');sh.setAttribute('aria-hidden','false');setTimeout(function(){document.getElementById('opt-ig').focus({preventScroll:true})},50)}
+ function close(){b.classList.remove('open-sheet');sh.setAttribute('aria-hidden','true');if(last)last.focus({preventScroll:true})}
+ document.querySelectorAll('[data-book]').forEach(function(x){x.addEventListener('click',open)});
+ document.querySelectorAll('[data-close]').forEach(function(x){x.addEventListener('click',close)});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'){close();lbc()}});
+ if(/[?&]book=1/.test(location.search))setTimeout(open,800);
+ // hide dock near footer
+ var dock=document.getElementById('dock'),ft=document.querySelector('footer');
+ var hb=document.getElementById('hero-book'),vis={hero:true,foot:false};
+ function upd(){dock.classList.toggle('hide',vis.hero||vis.foot);dock.setAttribute('aria-hidden',vis.hero||vis.foot)}
+ new IntersectionObserver(function(es){es.forEach(function(e){vis[e.target===hb?'hero':'foot']=e.isIntersecting});upd()}).observe(hb);
+ new IntersectionObserver(function(es){vis.foot=es[0].isIntersecting;upd()}).observe(ft);
+ // lightbox
+ var lb=document.getElementById('lb'),li=lb.querySelector('img');
+ function lbc(){lb.classList.remove('on')}
+ document.querySelectorAll('[data-lb]').forEach(function(x){x.addEventListener('click',function(){li.src=x.dataset.lb;li.alt=x.querySelector('img').alt;lb.classList.add('on')})});
+ lb.addEventListener('click',lbc);
+})();
+</script>
+</body>
+</html>
