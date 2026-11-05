@@ -95,12 +95,23 @@ footer p{margin-top:4px}
 .open-sheet .scrim{opacity:1;pointer-events:auto}
 .open-sheet .sheet{transform:none}
 .grab{width:40px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 20px}
-.sheet h2{font-size:28px;margin-bottom:6px}
-.sheet .lead{margin-bottom:22px}
+.sheet h2{font-size:28px;margin-bottom:6px;padding-right:36px}
+.sheet .lead{margin-bottom:18px}
 .opt{display:flex;align-items:center;gap:14px;width:100%;padding:16px 18px;border-radius:16px;background:var(--white);border:1px solid var(--line);text-decoration:none;font:500 16px/1.2 var(--sans);margin-bottom:10px;transition:border-color .2s ease}
 .opt:hover{border-color:var(--blush)}
 .opt svg{width:22px;height:22px;flex:none}
 .opt .ic{width:42px;height:42px;border-radius:50%;background:var(--blush);display:grid;place-items:center;flex:none}
+.sheet{max-height:92vh;overflow-y:auto}
+.pick{margin-bottom:14px}
+.pl{font:500 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chips button{min-height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--white);font:500 14px/1 var(--sans);color:var(--esp);cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease}
+.chips button[aria-pressed=true]{background:var(--esp);border-color:var(--esp);color:var(--ivory)}
+.chips button:disabled{opacity:.35;cursor:default}
+.preview{background:var(--white);border:1px dashed var(--line);border-radius:14px;padding:12px 14px;font:300 16px/1.4 var(--serif);margin:4px 0 12px}
+.igwrap{position:relative}
+.toast{position:absolute;left:50%;bottom:calc(100% + 8px);z-index:3;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--esp);color:var(--ivory);padding:12px 18px;border-radius:999px;font:500 14px/1.2 var(--sans);white-space:nowrap;box-shadow:0 8px 24px rgba(42,33,28,.25);transition:opacity .3s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
 .fine{font-size:13px;color:var(--stone);margin-top:12px;text-align:center}
 .x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:transparent;font-size:24px;cursor:pointer;color:var(--esp)}
 @media(min-width:900px){
@@ -205,8 +216,13 @@ footer p{margin-top:4px}
  <button class="x" data-close aria-label="Close">×</button>
  <div class="grab"></div>
  <h2 id="bk-t">Book an appointment</h2>
- <p class="lead">Message us on Instagram or give us a call.</p>
- <a class="opt" id="opt-ig" href="https://ig.me/m/jessica_nails_boutique" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2A211C" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="#2A211C"/></svg></span>Message on Instagram</a>
+ <p class="lead" id="bk-l">Pick what you’re after and we’ll write the message for you.</p>
+ <div class="pick"><p class="pl">Service</p><div class="chips" id="c-svc"></div></div>
+ <div class="pick" id="p-day"><p class="pl">Day</p><div class="chips" id="c-day"></div></div>
+ <div class="pick" id="p-time"><p class="pl">Time</p><div class="chips" id="c-time"></div></div>
+ <p class="preview" id="msg" aria-live="polite"></p>
+ <div class="igwrap"><div class="toast" id="toast" role="status">Message copied, paste it in Instagram</div>
+ <a class="opt" id="opt-ig" href="https://ig.me/m/jessica_nails_boutique" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2A211C" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="#2A211C"/></svg></span>Message on Instagram</a></div>
  <a class="opt" id="opt-call" href="tel:+61405636161"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2A211C" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>Call 0405 636 161</a>
  <p class="fine">We’re a small salon, so booking ahead is best.</p>
 </div>
@@ -236,9 +252,38 @@ footer p{margin-top:4px}
  function paint(){var s=hoursState();document.querySelectorAll('[data-chip]').forEach(function(c){c.classList.toggle('open',s.open);c.lastElementChild.textContent=s.text});
   document.querySelectorAll('.hours tr').forEach(function(r){r.classList.toggle('today',+r.dataset.d===s.day)})}
  paint();setInterval(paint,60000);
+ // message builder
+ var SV=[['Manicure','a manicure'],['Pedicure','a pedicure'],['Gel & shellac','gel or shellac'],['SNS dip','an SNS dip'],['Acrylic & extensions','acrylic or extensions'],['Nail art','nail art'],['Waxing','waxing']];
+ var TW=[['Morning',600,720,'morning'],['Afternoon',720,1020,'afternoon'],['Evening',1020,1260,'evening']];
+ var st={svc:2,day:null,time:null},days=[];
+ function chip(box,label,on,dis,fn){var b=document.createElement('button');b.type='button';b.textContent=label;b.setAttribute('aria-pressed',on);if(dis)b.disabled=true;b.onclick=fn;box.appendChild(b)}
+ function twOk(d,w,nowMin){var h=H[d.dow];if(w[1]>=h[1]||w[2]<=h[0])return false;if(d.today&&nowMin>=Math.min(w[2],h[1])-30)return false;return true}
+ function build(){
+  var s=hoursState(),n=mel(),closed=!s.open;
+  document.getElementById('bk-t').textContent=closed?'Message us for the next opening':'Book an appointment';
+  document.getElementById('bk-l').textContent=closed?'Pick a service and we’ll write the message for you.':'Pick what you’re after and we’ll write the message for you.';
+  document.getElementById('p-day').hidden=closed;document.getElementById('p-time').hidden=closed;
+  days=[];for(var i=0;i<7&&days.length<5;i++){var dw=(n.day+i)%7;if(i===0&&n.min>=H[dw][1]-30)continue;days.push({dow:dw,today:i===0,label:i===0?'Today':i===1?'Tomorrow':N[dw],name:i===0?'today':i===1?'tomorrow':'on '+N[dw]})}
+  if(st.day===null||st.day>=days.length)st.day=0;
+  var d=days[st.day];if(st.time!==null&&!twOk(d,TW[st.time],n.min))st.time=null;
+  if(st.time===null)for(var k=0;k<3;k++)if(twOk(d,TW[k],n.min)){st.time=k;break}
+  var cs=document.getElementById('c-svc'),cd=document.getElementById('c-day'),ct=document.getElementById('c-time');cs.innerHTML=cd.innerHTML=ct.innerHTML='';
+  SV.forEach(function(v,i){chip(cs,v[0],st.svc===i,false,function(){st.svc=i;build()})});
+  days.forEach(function(v,i){chip(cd,v.label,st.day===i,false,function(){st.day=i;st.time=null;build()})});
+  TW.forEach(function(v,i){chip(ct,v[0],st.time===i,!twOk(d,v,n.min),function(){st.time=i;build()})});
+  var m=closed?'Hi Jessica Nails! I’d love to book '+SV[st.svc][1]+'. Could you let me know your next available time?'
+   :'Hi Jessica Nails! I’d love to book '+SV[st.svc][1]+' '+d.name+(st.time!==null?' '+TW[st.time][3]:'')+'. Do you have a time?';
+  document.getElementById('msg').textContent=m;window.bookMsg=m;
+ }
+ function copy(t){
+  try{if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).catch(fb);return}}catch(e){}
+  fb();function fb(){var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove()}
+ }
+ var toast=document.getElementById('toast'),tt;
+ document.getElementById('opt-ig').addEventListener('click',function(){copy(window.bookMsg);toast.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('on')},2600)});
  // sheet
  var b=document.body,sh=document.getElementById('sheet'),last;
- function open(e){last=e&&e.currentTarget;b.classList.add('open-sheet');sh.setAttribute('aria-hidden','false');setTimeout(function(){document.getElementById('opt-ig').focus({preventScroll:true})},50)}
+ function open(e){last=e&&e.currentTarget;build();b.classList.add('open-sheet');sh.setAttribute('aria-hidden','false');setTimeout(function(){document.getElementById('opt-ig').focus({preventScroll:true})},50)}
  function close(){b.classList.remove('open-sheet');sh.setAttribute('aria-hidden','true');if(last)last.focus({preventScroll:true})}
  document.querySelectorAll('[data-book]').forEach(function(x){x.addEventListener('click',open)});
  document.querySelectorAll('[data-close]').forEach(function(x){x.addEventListener('click',close)});
